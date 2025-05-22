@@ -1,24 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+// import { darkTheme, lightTheme } from './styles/themes';
+
+import { darkTheme } from './styles/themes/darkTheme';
+import { lightTheme } from './styles/themes/lightTheme';
+
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
 
 function App() {
+  const [darkMode, setDarkMode] = useState(true);
+  const [activeTab, setActiveTab] = useState('home');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
+      <CssBaseline />
+      <div className="App">
+        <Navbar 
+          darkMode={darkMode} 
+          setDarkMode={setDarkMode}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+        />
+        <main>
+          {activeTab === 'home' && <Home />}
+          {/* Other pages would be rendered here */}
+        </main>
+      </div>
+    </ThemeProvider>
   );
 }
 
