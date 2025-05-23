@@ -1,6 +1,5 @@
-// components/Navbar.js
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Switch, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, IconButton, Box } from '@mui/material';
 import { Brightness4, Brightness7 } from '@mui/icons-material';
 
 const Navbar = ({ darkMode, setDarkMode, activeTab, setActiveTab }) => {
@@ -12,13 +11,13 @@ const Navbar = ({ darkMode, setDarkMode, activeTab, setActiveTab }) => {
         </Typography>
         
         <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
-          {['Home', 'Events', 'Attendance Tracker', 'Collab Zone', 'Events', 'Resources'].map((tab) => (
+          {['Home', 'Events', 'Attendance Tracker', 'Collab Zone', 'Resources'].map((tab) => (
             <Button
               key={tab}
-              onClick={() => setActiveTab(tab.toLowerCase())}
+              onClick={() => setActiveTab(tab.toLowerCase().replace(' ', '-'))}
               sx={{
-                color: activeTab === tab.toLowerCase() ? 'primary.main' : 'text.primary',
-                fontWeight: activeTab === tab.toLowerCase() ? 600 : 400,
+                color: activeTab === tab.toLowerCase().replace(' ', '-') ? 'primary.main' : 'text.primary',
+                fontWeight: activeTab === tab.toLowerCase().replace(' ', '-') ? 600 : 400,
               }}
             >
               {tab}

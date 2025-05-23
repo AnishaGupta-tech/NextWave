@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
+import { Box } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
-// import { darkTheme, lightTheme } from './styles/themes';
-
 import { darkTheme } from './styles/themes/darkTheme';
 import { lightTheme } from './styles/themes/lightTheme';
 
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
+import EventsPage from './pages/EventsPage';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -16,18 +16,18 @@ function App() {
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
-      <div className="App">
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar 
           darkMode={darkMode} 
           setDarkMode={setDarkMode}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
         />
-        <main>
+        <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           {activeTab === 'home' && <Home />}
-          {/* Other pages would be rendered here */}
-        </main>
-      </div>
+          {activeTab === 'events' && <EventsPage />}
+        </Box>
+      </Box>
     </ThemeProvider>
   );
 }
