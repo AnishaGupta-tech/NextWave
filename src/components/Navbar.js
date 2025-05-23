@@ -1,6 +1,6 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, IconButton, Box, Container } from '@mui/material';
-import { Code, Event, People, School, MenuBook, Home } from '@mui/icons-material';
+import { AppBar, Toolbar, Typography, Button, IconButton, Switch, Box } from '@mui/material';
+import { Brightness4, Brightness7 } from '@mui/icons-material';
 
 const Navbar = ({ darkMode, setDarkMode }) => {
   const navItems = [
@@ -12,63 +12,20 @@ const Navbar = ({ darkMode, setDarkMode }) => {
   ];
 
   return (
-    <AppBar position="sticky" elevation={0} sx={{ 
-      bgcolor: 'background.paper',
-      borderBottom: '1px solid',
-      borderColor: 'divider',
-      backdropFilter: 'blur(8px)',
-      zIndex: 1200
-    }}>
-      <Container maxWidth="xl">
-        <Toolbar disableGutters sx={{ justifyContent: 'space-between' }}>
-          <Box display="flex" alignItems="center">
-            <Code sx={{ 
-              fontSize: 32, 
-              color: 'primary.main',
-              mr: 1 
-            }}/>
-            <Typography variant="h5" sx={{ 
-              fontWeight: 800,
-              background: 'linear-gradient(45deg, #7c4dff 30%, #00e5ff 90%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              letterSpacing: '-0.5px'
-            }}>
-              NextWave
-            </Typography>
-          </Box>
-
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 0.5 }}>
-            {navItems.map((item) => (
-              <Button
-                key={item.name}
-                startIcon={item.icon}
-                sx={{
-                  color: 'text.primary',
-                  fontWeight: 500,
-                  textTransform: 'none',
-                  fontSize: '0.9rem',
-                  px: 2,
-                  py: 1,
-                  borderRadius: 2,
-                  '&:hover': {
-                    bgcolor: 'action.hover'
-                  }
-                }}
-              >
-                {item.name}
-              </Button>
-            ))}
-          </Box>
-
-          <Box display="flex" alignItems="center" gap={1}>
-            <Button 
-              variant="contained" 
-              size="small"
+    <AppBar position="static" elevation={0} sx={{ bgcolor: 'background.paper' }}>
+      <Toolbar>
+        <Typography variant="h4" component="div" sx={{ flexGrow: 1, fontWeight: 700 }}>
+          Next<span style={{ color: '#7c4dff' }}>Wave</span>
+        </Typography>
+        
+        <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
+          {['Home', 'Events', 'Attendance Tracker', 'Collab Zone', 'Events', 'Resources'].map((tab) => (
+            <Button
+              key={tab}
+              onClick={() => setActiveTab(tab.toLowerCase())}
               sx={{
-                fontWeight: 600,
-                textTransform: 'none',
-                px: 2.5
+                color: activeTab === tab.toLowerCase() ? 'primary.main' : 'text.primary',
+                fontWeight: activeTab === tab.toLowerCase() ? 600 : 400,
               }}
             >
               Join Now
