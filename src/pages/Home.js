@@ -406,7 +406,7 @@ export default function Home() {
     ))}
   </Grid>
 </Container>
-      {/* FAQ Section */}
+
       {/* FAQ Section */}
 <Box sx={{ 
   py: 10,
