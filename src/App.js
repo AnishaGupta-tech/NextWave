@@ -8,6 +8,7 @@ import { lightTheme } from './styles/themes/lightTheme';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import EventsPage from './pages/EventsPage';
+import AttendanceTracker from './pages/AttendanceTracker';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -26,6 +27,7 @@ function App() {
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
           {activeTab === 'home' && <Home />}
           {activeTab === 'events' && <EventsPage />}
+          {activeTab === 'attendance-tracker' && <AttendanceTracker />}
         </Box>
       </Box>
     </ThemeProvider>
