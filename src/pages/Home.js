@@ -329,88 +329,83 @@ export default function Home() {
       </Box>
 
       {/* Founders Section */}
-      <Container maxWidth="lg" sx={{ py: 10 }}>
-        <Box sx={{ textAlign: 'center', mb: 8 }}>
-          <Typography variant="overline" sx={{ 
-            color: 'primary.main',
-            fontWeight: 600,
-            letterSpacing: 1
-          }}>
-            OUR TEAM
-          </Typography>
-          <Typography variant="h3" sx={{ 
-            fontWeight: 700, 
-            mb: 2 
-          }}>
-            Meet The Visionaries
-          </Typography>
-          <Typography variant="body1" sx={{ 
-            maxWidth: 600,
-            mx: 'auto',
-            color: 'text.secondary'
-          }}>
-            A passionate team of IGDTUW students building solutions for the community.
-          </Typography>
-        </Box>
+<Container maxWidth="lg" sx={{ py: 10 }}>
+  <Box sx={{ textAlign: 'center', mb: 8 }}>
+    <Typography variant="overline" sx={{ 
+      color: 'primary.main',
+      fontWeight: 600,
+      letterSpacing: 1
+    }}>
+      OUR TEAM
+    </Typography>
+    <Typography variant="h3" sx={{ 
+      fontWeight: 700, 
+      mb: 2 
+    }}>
+      Meet The Visionaries
+    </Typography>
+  </Box>
 
-        <Grid container spacing={6} justifyContent="center">
-          {founders.map((founder, index) => (
-            <Grid item xs={12} md={6} key={index}>
-              <Card sx={{ 
-                display: 'flex',
-                p: 4,
-                border: '1px solid',
-                borderColor: 'divider',
-                bgcolor: 'background.paper'
-              }}>
-                <Avatar
-                  src={founder.image}
-                  sx={{ 
-                    width: 120, 
-                    height: 120, 
-                    mr: 4,
-                    border: '3px solid',
-                    borderColor: 'primary.main'
-                  }}
+  <Grid container spacing={4} justifyContent="center" alignItems="center">
+    {founders.map((founder, index) => (
+      <Grid item xs={12} md={5} key={index}>
+        <Card sx={{ 
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          p: 4,
+          textAlign: 'center',
+          height: '100%',
+          border: '1px solid',
+          borderColor: 'divider'
+        }}>
+          <Avatar
+            src={founder.image}
+            sx={{ 
+              width: 160, 
+              height: 160, 
+              mb: 3,
+              border: '3px solid',
+              borderColor: 'primary.main'
+            }}
+          />
+          <Box>
+            <Typography variant="h5" sx={{ fontWeight: 700 }}>
+              {founder.name}
+            </Typography>
+            <Typography variant="body2" color="primary" sx={{ mb: 1 }}>
+              {founder.role}
+            </Typography>
+            <Typography variant="body2" sx={{ mb: 3 }}>
+              {founder.bio}
+            </Typography>
+            <Button
+              component="a"
+              href={founder.linkedin}
+              target="_blank"
+              rel="noopener"
+              variant="outlined"
+              size="small"
+              startIcon={
+                <img 
+                  src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg" 
+                  alt="LinkedIn" 
+                  style={{ width: 16, height: 16 }}
                 />
-                <Box>
-                  <Typography variant="h5" sx={{ fontWeight: 700 }}>
-                    {founder.name}
-                  </Typography>
-                  <Typography variant="body2" color="primary" sx={{ mb: 1 }}>
-                    {founder.role}
-                  </Typography>
-                  <Typography variant="body2" sx={{ mb: 2 }}>
-                    {founder.bio}
-                  </Typography>
-                  <Button
-                    component="a"
-                    href={founder.linkedin}
-                    target="_blank"
-                    rel="noopener"
-                    variant="outlined"
-                    size="small"
-                    startIcon={
-                      <img 
-                        src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg" 
-                        alt="LinkedIn" 
-                        style={{ width: 16, height: 16 }}
-                      />
-                    }
-                    sx={{
-                      textTransform: 'none',
-                      fontWeight: 500
-                    }}
-                  >
-                    Connect on LinkedIn
-                  </Button>
-                </Box>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
-
+              }
+              sx={{
+                textTransform: 'none',
+                fontWeight: 500
+              }}
+            >
+              Connect
+            </Button>
+          </Box>
+        </Card>
+      </Grid>
+    ))}
+  </Grid>
+</Container>
       {/* FAQ Section */}
       <Box sx={{ 
         py: 10,
