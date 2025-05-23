@@ -90,7 +90,7 @@ const AttendanceTracker = () => {
   return (
     <Box sx={{ p: 4 }}>
       <Typography variant="h4" gutterBottom sx={{ fontWeight: 'bold' }}>
-        🎓 College Attendance Tracker
+        College Attendance Tracker
       </Typography>
 
       {/* Safe Percentage Input */}
