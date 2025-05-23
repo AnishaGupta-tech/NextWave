@@ -12,7 +12,7 @@ const Navbar = ({ darkMode, setDarkMode, activeTab, setActiveTab }) => {
         </Typography>
         
         <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
-          {['Home', 'Hackathons', 'Ideathons', 'Internships', 'Events', 'Resources'].map((tab) => (
+          {['Home', 'Events', 'Attendance Tracker', 'Collab Zone', 'Events', 'Resources'].map((tab) => (
             <Button
               key={tab}
               onClick={() => setActiveTab(tab.toLowerCase())}
