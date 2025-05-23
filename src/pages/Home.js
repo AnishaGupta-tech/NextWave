@@ -18,15 +18,15 @@ const founders = [
   {
     name: "Anisha Gupta",
     role: "Founder & Lead Developer",
-    image: "/founders/aditya.jpg",
-    linkedin: "https://linkedin.com/in/adityajain",
+    image: "https://media.licdn.com/dms/image/v2/D5603AQGTM5VqDOGQpQ/profile-displayphoto-shrink_800_800/B56ZYd8e.yHoAg-/0/1744259117975?e=1753315200&v=beta&t=NGxPalORzCU1_C33Yx7bEmzbQJjJx2yPutRYJuZBxOA",
+    linkedin: "https://www.linkedin.com/in/anisha-gupta-33582b311/",
     bio: "Student at IGDTUW with 5+ years of development experience"
   },
   {
     name: "Aashi Jain",
     role: "Founder & Lead Developer",
-    image: "/founders/priya.jpg",
-    linkedin: "https://linkedin.com/in/priyasharma",
+    image: "https://media.licdn.com/dms/image/v2/D4E03AQFEpUbV68DkZw/profile-displayphoto-shrink_800_800/B4EZTbiAsCHMAg-/0/1738849914823?e=1753315200&v=beta&t=Wna7Eilst63-5ldhUpo3ND1Es0TiQ5MseUa5bS06kiM",
+    linkedin: "https://www.linkedin.com/in/aashi-jain-671a3b321/",
     bio: "UI/UX specialist with focus on educational platforms"
   }
 ];
@@ -73,7 +73,7 @@ const features = [
 const faqs = [
   {
     question: "How is NextWave different from other student platforms?",
-    answer: "NextWave is specifically tailored for IGDTUW students with features like department-specific resources, official event integrations, and university-approved attendance tracking."
+    answer: "NextWave is specifically tailored for B.Tech students with features like department-specific resources, official event integrations, and university-approved attendance tracking."
   },
   {
     question: "Is there a mobile app available?",
@@ -85,7 +85,7 @@ const faqs = [
   },
   {
     question: "Are there any costs involved?",
-    answer: "NextWave is completely free for IGDTUW students. We're supported by the university and tech community partners."
+    answer: "NextWave is completely free for students. We're supported by the university and tech community partners."
   }
 ];
 
@@ -142,7 +142,7 @@ export default function Home() {
               color: 'text.secondary',
               fontWeight: 400
             }}>
-              NextWave integrates all essential academic tools with career-building resources in one unified platform designed specifically for IGDTUW students.
+              NextWave integrates all essential academic tools with career-building resources in one unified platform designed specifically for college students.
             </Typography>
             <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center' }}>
               <Button 
@@ -155,7 +155,7 @@ export default function Home() {
                   fontSize: '1rem'
                 }}
               >
-                Get Started
+                Join Us
               </Button>
               <Button 
                 variant="outlined" 
@@ -479,7 +479,7 @@ export default function Home() {
           color: 'text.secondary',
           fontWeight: 400
         }}>
-          Join thousands of IGDTUW students already using NextWave to supercharge their academic journey.
+          Join thousands of students already using NextWave to supercharge their academic journey.
         </Typography>
         <Button 
           variant="contained" 
