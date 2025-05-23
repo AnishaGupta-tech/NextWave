@@ -407,61 +407,62 @@ export default function Home() {
   </Grid>
 </Container>
       {/* FAQ Section */}
-      <Box sx={{ 
-        py: 10,
-        bgcolor: 'background.default',
-        borderTop: '1px solid',
-        borderColor: 'divider'
+      {/* FAQ Section */}
+<Box sx={{ 
+  py: 10,
+  bgcolor: 'background.default'
+}}>
+  <Container maxWidth="lg">
+    <Box sx={{ textAlign: 'center', mb: 8 }}>
+      <Typography variant="overline" sx={{ 
+        color: 'primary.main',
+        fontWeight: 600,
+        letterSpacing: 1
       }}>
-        <Container maxWidth="lg">
-          <Box sx={{ textAlign: 'center', mb: 8 }}>
-            <Typography variant="overline" sx={{ 
-              color: 'primary.main',
-              fontWeight: 600,
-              letterSpacing: 1
-            }}>
-              HAVE QUESTIONS?
-            </Typography>
-            <Typography variant="h3" sx={{ 
-              fontWeight: 700, 
-              mb: 2 
-            }}>
-              Frequently Asked Questions
-            </Typography>
-          </Box>
+        SUPPORT
+      </Typography>
+      <Typography variant="h3" sx={{ 
+        fontWeight: 700, 
+        mb: 2 
+      }}>
+        Frequently Asked Questions
+      </Typography>
+    </Box>
 
-          <Box sx={{ maxWidth: 800, mx: 'auto' }}>
-            {faqs.map((faq, index) => (
-              <Accordion 
-                key={index} 
-                elevation={0}
-                sx={{ 
-                  bgcolor: 'transparent',
-                  border: '1px solid',
-                  borderColor: 'divider',
-                  '&:before': { display: 'none' },
-                  '&:not(:last-child)': { mb: 2 }
-                }}
-              >
-                <AccordionSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  sx={{ 
-                    fontWeight: 600,
-                    minHeight: 64
-                  }}
-                >
-                  {faq.question}
-                </AccordionSummary>
-                <AccordionDetails>
-                  <Typography color="text.secondary">
-                    {faq.answer}
-                  </Typography>
-                </AccordionDetails>
-              </Accordion>
-            ))}
-          </Box>
-        </Container>
-      </Box>
+    <Box sx={{ maxWidth: 800, mx: 'auto' }}>
+      {faqs.map((faq, index) => (
+        <Accordion 
+          key={index} 
+          elevation={0}
+          sx={{ 
+            bgcolor: 'transparent',
+            '&:before': { display: 'none' },
+            '&:not(:last-child)': { mb: 1 }
+          }}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            sx={{ 
+              fontWeight: 600,
+              minHeight: 72,
+              fontSize: '1.1rem', // Larger font size
+              '& .MuiAccordionSummary-content': {
+                alignItems: 'center'
+              }
+            }}
+          >
+            {faq.question}
+          </AccordionSummary>
+          <AccordionDetails sx={{ pt: 0 }}>
+            <Typography color="text.secondary">
+              {faq.answer}
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+      ))}
+    </Box>
+  </Container>
+</Box>
 
       {/* CTA Section */}
       <Container maxWidth="lg" sx={{ py: 12, textAlign: 'center' }}>
