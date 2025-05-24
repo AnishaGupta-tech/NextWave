@@ -9,6 +9,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import EventsPage from './pages/EventsPage';
 import AttendanceTracker from './pages/AttendanceTracker';
+import Collab from './pages/Collab';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -28,6 +29,7 @@ function App() {
           {activeTab === 'home' && <Home />}
           {activeTab === 'events' && <EventsPage />}
           {activeTab === 'attendance-tracker' && <AttendanceTracker />}
+          {activeTab === 'collab-zone' && <Collab />}
         </Box>
       </Box>
     </ThemeProvider>

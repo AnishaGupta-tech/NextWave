@@ -175,88 +175,218 @@ export default function Home() {
       </Box>
 
       {/* Features Section */}
-      <Container maxWidth="lg" sx={{ py: 10 }}>
-        <Box sx={{ textAlign: 'center', mb: 8 }}>
-          <Typography variant="overline" sx={{ 
-            color: 'primary.main',
-            fontWeight: 600,
-            letterSpacing: 1
-          }}>
-            WHY CHOOSE NEXTWAVE
-          </Typography>
-          <Typography variant="h3" sx={{ 
-            fontWeight: 700, 
-            mb: 2 
-          }}>
-            Everything You Need in One Platform
-          </Typography>
-          <Typography variant="body1" sx={{ 
-            maxWidth: 600,
-            mx: 'auto',
-            color: 'text.secondary'
-          }}>
-            We've integrated all essential student tools with powerful features to support your academic and professional journey.
-          </Typography>
-        </Box>
+<Container maxWidth="lg" sx={{ py: 10 }}>
+  <Box sx={{ textAlign: 'center', mb: 8 }}>
+    <Chip 
+      label="CORE FEATURES"
+      sx={{ 
+        mb: 3,
+        px: 2,
+        py: 1,
+        fontWeight: 700,
+        letterSpacing: 1,
+        bgcolor: 'primary.main',
+        color: 'white',
+        fontSize: '0.75rem'
+      }}
+    />
+    <Typography variant="h3" sx={{ 
+      fontWeight: 700, 
+      mb: 2,
+      fontSize: '2.5rem'
+    }}>
+      Powerful Tools for Student Success
+    </Typography>
+    <Typography variant="body1" sx={{ 
+      maxWidth: 600,
+      mx: 'auto',
+      color: 'text.secondary',
+      fontSize: '1.1rem'
+    }}>
+      Premium features designed to elevate your academic experience
+    </Typography>
+  </Box>
 
-        <Grid container spacing={4}>
-          {features.map((feature, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card sx={{ 
-                height: '100%',
-                display: 'flex',
-                flexDirection: 'column',
-                transition: 'all 0.3s ease',
-                border: '1px solid',
-                borderColor: 'divider',
-                '&:hover': { 
-                  transform: 'translateY(-8px)',
-                  boxShadow: '0 15px 30px rgba(0,0,0,0.12)'
-                }
-              }}>
-                <CardContent sx={{ 
-                  flexGrow: 1,
-                  p: 4,
-                  '&:last-child': { pb: 4 }
-                }}>
-                  <Box sx={{ 
-                    width: 80,
-                    height: 80,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    bgcolor: 'primary.light',
-                    borderRadius: 2,
-                    mb: 3,
-                    color: 'primary.main'
-                  }}>
-                    {feature.icon}
-                  </Box>
-                  <Typography variant="h5" sx={{ 
-                    fontWeight: 700, 
-                    mb: 2 
-                  }}>
-                    {feature.title}
-                  </Typography>
-                  <Typography variant="body1" sx={{ 
-                    color: 'text.secondary',
-                    mb: 2
-                  }}>
-                    {feature.description}
-                  </Typography>
-                  <Typography variant="caption" sx={{ 
-                    display: 'block',
-                    color: 'primary.main',
-                    fontWeight: 600
-                  }}>
-                    {feature.stats}
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-        </Grid>
-      </Container>
+  {/* First Row - 3 Boxes */}
+  <Grid container spacing={4} sx={{ mb: 4 }}>
+    {features.slice(0, 3).map((feature, index) => (
+      <Grid item xs={12} md={4} key={index}>
+        <Card sx={{ 
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+          border: 'none',
+          bgcolor: 'background.paper',
+          borderRadius: 3,
+          overflow: 'hidden',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+          '&:hover': { 
+            transform: 'translateY(-8px)',
+            boxShadow: '0 12px 24px rgba(124,77,255,0.15)'
+          }
+        }}>
+          <Box sx={{
+            height: 180,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            bgcolor: 'primary.main',
+            color: 'white',
+            position: 'relative',
+            overflow: 'hidden',
+            '&:before': {
+              content: '""',
+              position: 'absolute',
+              top: -50,
+              right: -50,
+              width: 120,
+              height: 120,
+              bgcolor: 'rgba(255,255,255,0.1)',
+              borderRadius: '50%'
+            }
+          }}>
+            <Box sx={{ 
+              width: 80,
+              height: 80,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              bgcolor: 'rgba(255,255,255,0.2)',
+              borderRadius: '50%',
+              zIndex: 1
+            }}>
+              {React.cloneElement(feature.icon, { sx: { fontSize: 40, color: 'white' } })}
+            </Box>
+          </Box>
+          <CardContent sx={{ 
+            flexGrow: 1,
+            p: 4,
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+            <Typography variant="h5" sx={{ 
+              fontWeight: 700, 
+              mb: 2,
+              color: 'text.primary'
+            }}>
+              {feature.title}
+            </Typography>
+            <Typography variant="body1" sx={{ 
+              color: 'text.secondary',
+              mb: 3,
+              flexGrow: 1
+            }}>
+              {feature.description}
+            </Typography>
+            <Chip 
+              label={feature.stats} 
+              size="small"
+              sx={{ 
+                alignSelf: 'flex-start',
+                fontWeight: 600,
+                bgcolor: 'primary.light',
+                color: 'primary.dark',
+                px: 1.5,
+                py: 0.5
+              }}
+            />
+          </CardContent>
+        </Card>
+      </Grid>
+    ))}
+  </Grid>
+
+  {/* Second Row - 3 Boxes */}
+  <Grid container spacing={4}>
+    {features.slice(3, 6).map((feature, index) => (
+      <Grid item xs={12} md={4} key={index}>
+        <Card sx={{ 
+          height: '100%',
+          display: 'flex',
+          flexDirection: 'column',
+          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+          border: 'none',
+          bgcolor: 'background.paper',
+          borderRadius: 3,
+          overflow: 'hidden',
+          boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+          '&:hover': { 
+            transform: 'translateY(-8px)',
+            boxShadow: '0 12px 24px rgba(0,229,255,0.15)'
+          }
+        }}>
+          <Box sx={{
+            height: 180,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            bgcolor: 'secondary.main',
+            color: 'white',
+            position: 'relative',
+            overflow: 'hidden',
+            '&:before': {
+              content: '""',
+              position: 'absolute',
+              top: -50,
+              right: -50,
+              width: 120,
+              height: 120,
+              bgcolor: 'rgba(255,255,255,0.1)',
+              borderRadius: '50%'
+            }
+          }}>
+            <Box sx={{ 
+              width: 80,
+              height: 80,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              bgcolor: 'rgba(255,255,255,0.2)',
+              borderRadius: '50%',
+              zIndex: 1
+            }}>
+              {React.cloneElement(feature.icon, { sx: { fontSize: 40, color: 'white' } })}
+            </Box>
+          </Box>
+          <CardContent sx={{ 
+            flexGrow: 1,
+            p: 4,
+            display: 'flex',
+            flexDirection: 'column'
+          }}>
+            <Typography variant="h5" sx={{ 
+              fontWeight: 700, 
+              mb: 2,
+              color: 'text.primary'
+            }}>
+              {feature.title}
+            </Typography>
+            <Typography variant="body1" sx={{ 
+              color: 'text.secondary',
+              mb: 3,
+              flexGrow: 1
+            }}>
+              {feature.description}
+            </Typography>
+            <Chip 
+              label={feature.stats} 
+              size="small"
+              sx={{ 
+                alignSelf: 'flex-start',
+                fontWeight: 600,
+                bgcolor: 'secondary.light',
+                color: 'secondary.dark',
+                px: 1.5,
+                py: 0.5
+              }}
+            />
+          </CardContent>
+        </Card>
+      </Grid>
+    ))}
+  </Grid>
+</Container>
 
       {/* Stats Section */}
       <Box sx={{ 
