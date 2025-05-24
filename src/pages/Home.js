@@ -3,7 +3,6 @@ import {
   Box, Typography, Grid, Card, CardContent, Avatar, Chip, Container, 
   Accordion, AccordionSummary, AccordionDetails, Divider, Button 
 } from '@mui/material';
-import { Link } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { 
   Event as EventIcon,
@@ -13,60 +12,39 @@ import {
   EmojiEvents as AchievementsIcon,
   Forum as CommunityIcon
 } from '@mui/icons-material';
-
-const founders = [
-  {
-    name: "Anisha Gupta",
-    role: "Founder & Lead Developer",
-    image: "https://media.licdn.com/dms/image/v2/D5603AQGTM5VqDOGQpQ/profile-displayphoto-shrink_800_800/B56ZYd8e.yHoAg-/0/1744259117975?e=1753315200&v=beta&t=NGxPalORzCU1_C33Yx7bEmzbQJjJx2yPutRYJuZBxOA",
-    linkedin: "https://www.linkedin.com/in/anisha-gupta-33582b311/",
-    bio: "Student at IGDTUW with 5+ years of development experience"
-  },
-  {
-    name: "Aashi Jain",
-    role: "Founder & Lead Developer",
-    image: "https://media.licdn.com/dms/image/v2/D4E03AQFEpUbV68DkZw/profile-displayphoto-shrink_800_800/B4EZTbiAsCHMAg-/0/1738849914823?e=1753315200&v=beta&t=Wna7Eilst63-5ldhUpo3ND1Es0TiQ5MseUa5bS06kiM",
-    linkedin: "https://www.linkedin.com/in/aashi-jain-671a3b321/",
-    bio: "UI/UX specialist with focus on educational platforms"
-  }
-];
+import AashiImage from './founders-imgs/Aashi.jpeg';
+import AnishaImage from './founders-imgs/anisha.jpeg';
 
 const features = [
   {
-    title: "Comprehensive Events Hub",
-    description: "Discover all upcoming hackathons, workshops, guest lectures, and tech events specifically curated for IGDTUW students.",
-    icon: <EventIcon sx={{ fontSize: 40 }} />,
-    stats: "150+ events annually"
+    title: 'Comprehensive Events Hub',
+    description: 'Stay informed about college events, fests, workshops, and webinars.',
+    icon: <EventIcon fontSize="large" color="primary" />
   },
   {
-    title: "Smart Attendance Tracker",
-    description: "Automated attendance tracking with predictive analytics to help you maintain required percentages and avoid shortages.",
-    icon: <SchoolIcon sx={{ fontSize: 40 }} />,
-    stats: "Used by 2,500+ students"
+    title: 'Smart Attendance Tracker',
+    description: 'Effortlessly mark and manage attendance with QR code-based check-ins.',
+    icon: <SchoolIcon fontSize="large" color="primary" />
   },
   {
-    title: "Collaboration Platform",
-    description: "Find teammates for hackathons, connect with mentors, and join study groups based on your skills and interests.",
-    icon: <CollabIcon sx={{ fontSize: 40 }} />,
-    stats: "300+ projects created"
+    title: 'Collaboration Platform',
+    description: 'Connect with peers for projects, study groups, and club activities.',
+    icon: <CollabIcon fontSize="large" color="primary" />
   },
   {
-    title: "Learning Resources",
-    description: "Curated collection of course materials, competitive programming resources, and interview preparation guides.",
-    icon: <ResourcesIcon sx={{ fontSize: 40 }} />,
-    stats: "1,200+ resources"
+    title: 'Learning Resources',
+    description: 'Access curated study materials, previous year papers, and tutorials.',
+    icon: <ResourcesIcon fontSize="large" color="primary" />
   },
   {
-    title: "Achievements Showcase",
-    description: "Highlight your projects and accomplishments to potential employers and collaborators.",
-    icon: <AchievementsIcon sx={{ fontSize: 40 }} />,
-    stats: "Featured 100+ student projects"
+    title: 'Achievements Showcase',
+    description: 'Highlight your accolades and get inspired by others’ accomplishments.',
+    icon: <AchievementsIcon fontSize="large" color="primary" />
   },
   {
-    title: "Community Forum",
-    description: "Discussion boards for each department and special interest groups in technology.",
-    icon: <CommunityIcon sx={{ fontSize: 40 }} />,
-    stats: "Active 24/7 community"
+    title: 'Community Forum',
+    description: 'Engage in discussions, seek advice, and share experiences.',
+    icon: <CommunityIcon fontSize="large" color="primary" />
   }
 ];
 
@@ -86,6 +64,24 @@ const faqs = [
   {
     question: "Are there any costs involved?",
     answer: "NextWave is completely free for students. We're supported by the university and tech community partners."
+  }
+];
+
+// Sample founders array
+const founders = [
+  {
+    name: 'Aashi Jain',
+    role: 'Founder',
+    bio: 'Passionate about student success and tech innovation.',
+    image: AashiImage,
+    linkedin: 'https://www.linkedin.com/in/aashi-jain-671a3b321'
+  },
+  {
+    name: 'Anisha Gupta',
+    role: 'Founder ',
+    bio: 'Expert in software development and AI solutions.',
+    image: AnishaImage,
+    linkedin: 'https://www.linkedin.com/in/anisha-gupta-33582b311/'
   }
 ];
 
@@ -175,218 +171,30 @@ export default function Home() {
       </Box>
 
       {/* Features Section */}
-<Container maxWidth="lg" sx={{ py: 10 }}>
-  <Box sx={{ textAlign: 'center', mb: 8 }}>
-    <Chip 
-      label="CORE FEATURES"
-      sx={{ 
-        mb: 3,
-        px: 2,
-        py: 1,
-        fontWeight: 700,
-        letterSpacing: 1,
-        bgcolor: 'primary.main',
-        color: 'white',
-        fontSize: '0.75rem'
-      }}
-    />
-    <Typography variant="h3" sx={{ 
-      fontWeight: 700, 
-      mb: 2,
-      fontSize: '2.5rem'
-    }}>
-      Powerful Tools for Student Success
-    </Typography>
-    <Typography variant="body1" sx={{ 
-      maxWidth: 600,
-      mx: 'auto',
-      color: 'text.secondary',
-      fontSize: '1.1rem'
-    }}>
-      Premium features designed to elevate your academic experience
-    </Typography>
-  </Box>
+      <Container maxWidth="lg" sx={{ py: 8 }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Your One-Stop College Companion
+        </Typography>
+        <Typography variant="subtitle1" align="center" paragraph>
+          From tracking attendance to discovering exciting events, we’ve got everything covered.
+        </Typography>
 
-  {/* First Row - 3 Boxes */}
-  <Grid container spacing={4} sx={{ mb: 4 }}>
-    {features.slice(0, 3).map((feature, index) => (
-      <Grid item xs={12} md={4} key={index}>
-        <Card sx={{ 
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-          border: 'none',
-          bgcolor: 'background.paper',
-          borderRadius: 3,
-          overflow: 'hidden',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-          '&:hover': { 
-            transform: 'translateY(-8px)',
-            boxShadow: '0 12px 24px rgba(124,77,255,0.15)'
-          }
-        }}>
-          <Box sx={{
-            height: 180,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            bgcolor: 'primary.main',
-            color: 'white',
-            position: 'relative',
-            overflow: 'hidden',
-            '&:before': {
-              content: '""',
-              position: 'absolute',
-              top: -50,
-              right: -50,
-              width: 120,
-              height: 120,
-              bgcolor: 'rgba(255,255,255,0.1)',
-              borderRadius: '50%'
-            }
-          }}>
-            <Box sx={{ 
-              width: 80,
-              height: 80,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              bgcolor: 'rgba(255,255,255,0.2)',
-              borderRadius: '50%',
-              zIndex: 1
-            }}>
-              {React.cloneElement(feature.icon, { sx: { fontSize: 40, color: 'white' } })}
-            </Box>
-          </Box>
-          <CardContent sx={{ 
-            flexGrow: 1,
-            p: 4,
-            display: 'flex',
-            flexDirection: 'column'
-          }}>
-            <Typography variant="h5" sx={{ 
-              fontWeight: 700, 
-              mb: 2,
-              color: 'text.primary'
-            }}>
-              {feature.title}
-            </Typography>
-            <Typography variant="body1" sx={{ 
-              color: 'text.secondary',
-              mb: 3,
-              flexGrow: 1
-            }}>
-              {feature.description}
-            </Typography>
-            <Chip 
-              label={feature.stats} 
-              size="small"
-              sx={{ 
-                alignSelf: 'flex-start',
-                fontWeight: 600,
-                bgcolor: 'primary.light',
-                color: 'primary.dark',
-                px: 1.5,
-                py: 0.5
-              }}
-            />
-          </CardContent>
-        </Card>
-      </Grid>
-    ))}
-  </Grid>
-
-  {/* Second Row - 3 Boxes */}
-  <Grid container spacing={4}>
-    {features.slice(3, 6).map((feature, index) => (
-      <Grid item xs={12} md={4} key={index}>
-        <Card sx={{ 
-          height: '100%',
-          display: 'flex',
-          flexDirection: 'column',
-          transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-          border: 'none',
-          bgcolor: 'background.paper',
-          borderRadius: 3,
-          overflow: 'hidden',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-          '&:hover': { 
-            transform: 'translateY(-8px)',
-            boxShadow: '0 12px 24px rgba(0,229,255,0.15)'
-          }
-        }}>
-          <Box sx={{
-            height: 180,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            bgcolor: 'secondary.main',
-            color: 'white',
-            position: 'relative',
-            overflow: 'hidden',
-            '&:before': {
-              content: '""',
-              position: 'absolute',
-              top: -50,
-              right: -50,
-              width: 120,
-              height: 120,
-              bgcolor: 'rgba(255,255,255,0.1)',
-              borderRadius: '50%'
-            }
-          }}>
-            <Box sx={{ 
-              width: 80,
-              height: 80,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              bgcolor: 'rgba(255,255,255,0.2)',
-              borderRadius: '50%',
-              zIndex: 1
-            }}>
-              {React.cloneElement(feature.icon, { sx: { fontSize: 40, color: 'white' } })}
-            </Box>
-          </Box>
-          <CardContent sx={{ 
-            flexGrow: 1,
-            p: 4,
-            display: 'flex',
-            flexDirection: 'column'
-          }}>
-            <Typography variant="h5" sx={{ 
-              fontWeight: 700, 
-              mb: 2,
-              color: 'text.primary'
-            }}>
-              {feature.title}
-            </Typography>
-            <Typography variant="body1" sx={{ 
-              color: 'text.secondary',
-              mb: 3,
-              flexGrow: 1
-            }}>
-              {feature.description}
-            </Typography>
-            <Chip 
-              label={feature.stats} 
-              size="small"
-              sx={{ 
-                alignSelf: 'flex-start',
-                fontWeight: 600,
-                bgcolor: 'secondary.light',
-                color: 'secondary.dark',
-                px: 1.5,
-                py: 0.5
-              }}
-            />
-          </CardContent>
-        </Card>
-      </Grid>
-    ))}
-  </Grid>
-</Container>
+        <Grid container spacing={4} sx={{ mt: 4 }}>
+          {features.map((feature, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <Card elevation={3} sx={{ height: '100%', p: 3, textAlign: 'center' }}>
+                {feature.icon}
+                <Typography variant="h6" gutterBottom sx={{ mt: 2 }}>
+                  {feature.title}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {feature.description}
+                </Typography>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
 
       {/* Stats Section */}
       <Box sx={{ 
@@ -459,172 +267,87 @@ export default function Home() {
       </Box>
 
       {/* Founders Section */}
-<Container maxWidth="lg" sx={{ py: 10 }}>
-  <Box sx={{ textAlign: 'center', mb: 8 }}>
-    <Typography variant="overline" sx={{ 
-      color: 'primary.main',
-      fontWeight: 600,
-      letterSpacing: 1
-    }}>
-      OUR TEAM
-    </Typography>
-    <Typography variant="h3" sx={{ 
-      fontWeight: 700, 
-      mb: 2 
-    }}>
-      Meet The Visionaries
-    </Typography>
-  </Box>
+      <Container maxWidth="lg" sx={{ py: 10 }}>
+        <Box sx={{ textAlign: 'center', mb: 8 }}>
+          <Typography variant="overline" sx={{ 
+            color: 'primary.main',
+            fontWeight: 600,
+            letterSpacing: 1
+          }}>
+            OUR TEAM
+          </Typography>
+          <Typography variant="h3" sx={{ 
+            fontWeight: 700, 
+            mb: 2 
+          }}>
+            Meet The Visionaries
+          </Typography>
+        </Box>
 
-  <Grid container spacing={4} justifyContent="center" alignItems="center">
-    {founders.map((founder, index) => (
-      <Grid item xs={12} md={5} key={index}>
-        <Card sx={{ 
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          p: 4,
-          textAlign: 'center',
-          height: '100%',
-          border: '1px solid',
-          borderColor: 'divider'
-        }}>
-          <Avatar
-            src={founder.image}
-            sx={{ 
-              width: 160, 
-              height: 160, 
-              mb: 3,
-              border: '3px solid',
-              borderColor: 'primary.main'
-            }}
-          />
-          <Box>
-            <Typography variant="h5" sx={{ fontWeight: 700 }}>
-              {founder.name}
-            </Typography>
-            <Typography variant="body2" color="primary" sx={{ mb: 1 }}>
-              {founder.role}
-            </Typography>
-            <Typography variant="body2" sx={{ mb: 3 }}>
-              {founder.bio}
-            </Typography>
-            <Button
-              component="a"
-              href={founder.linkedin}
-              target="_blank"
-              rel="noopener"
-              variant="outlined"
-              size="small"
-              startIcon={
-                <img 
-                  src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg" 
-                  alt="LinkedIn" 
-                  style={{ width: 16, height: 16 }}
+        <Grid container spacing={4} justifyContent="center" alignItems="center">
+          {founders.map((founder, index) => (
+            <Grid item xs={12} md={5} key={index}>
+              <Card sx={{ 
+                display: 'flex',
+                alignItems: 'center',
+                p: 3,
+                gap: 3,
+                boxShadow: 3
+              }}>
+                <Avatar 
+                  src={founder.image} 
+                  alt={founder.name} 
+                  sx={{ width: 120, height: 120, borderRadius: 2 }}
                 />
-              }
-              sx={{
-                textTransform: 'none',
-                fontWeight: 500
-              }}
-            >
-              Connect
-            </Button>
-          </Box>
-        </Card>
-      </Grid>
-    ))}
-  </Grid>
-</Container>
+                <Box>
+                  <Typography variant="h5" sx={{ fontWeight: 700 }}>
+                    {founder.name}
+                  </Typography>
+                  <Typography variant="subtitle1" color="primary" sx={{ mb: 1 }}>
+                    {founder.role}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                    {founder.bio}
+                  </Typography>
+                  <Button 
+                    href={founder.linkedin} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    variant="outlined"
+                    size="small"
+                  >
+                    LinkedIn Profile
+                  </Button>
+                </Box>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
 
       {/* FAQ Section */}
-<Box sx={{ 
-  py: 10,
-  bgcolor: 'background.default'
-}}>
-  <Container maxWidth="lg">
-    <Box sx={{ textAlign: 'center', mb: 8 }}>
-      <Typography variant="overline" sx={{ 
-        color: 'primary.main',
-        fontWeight: 600,
-        letterSpacing: 1
-      }}>
-        SUPPORT
-      </Typography>
-      <Typography variant="h3" sx={{ 
-        fontWeight: 700, 
-        mb: 2 
-      }}>
-        Frequently Asked Questions
-      </Typography>
-    </Box>
-
-    <Box sx={{ maxWidth: 800, mx: 'auto' }}>
-      {faqs.map((faq, index) => (
-        <Accordion 
-          key={index} 
-          elevation={0}
-          sx={{ 
-            bgcolor: 'transparent',
-            '&:before': { display: 'none' },
-            '&:not(:last-child)': { mb: 1 }
-          }}
-        >
-          <AccordionSummary
-            expandIcon={<ExpandMoreIcon />}
-            sx={{ 
-              fontWeight: 600,
-              minHeight: 72,
-              fontSize: '1.1rem', // Larger font size
-              '& .MuiAccordionSummary-content': {
-                alignItems: 'center'
-              }
-            }}
-          >
-            {faq.question}
-          </AccordionSummary>
-          <AccordionDetails sx={{ pt: 0 }}>
-            <Typography color="text.secondary">
-              {faq.answer}
-            </Typography>
-          </AccordionDetails>
-        </Accordion>
-      ))}
-    </Box>
-  </Container>
-</Box>
-
-      {/* CTA Section */}
-      <Container maxWidth="lg" sx={{ py: 12, textAlign: 'center' }}>
-        <Typography variant="h3" sx={{ 
-          fontWeight: 800,
-          mb: 3,
-          lineHeight: 1.2
-        }}>
-          Ready to Transform Your Student Experience?
+      <Container maxWidth="md" sx={{ py: 8 }}>
+        <Typography variant="h4" align="center" gutterBottom>
+          Frequently Asked Questions
         </Typography>
-        <Typography variant="h6" sx={{ 
-          maxWidth: 600, 
-          mx: 'auto', 
-          mb: 4,
-          color: 'text.secondary',
-          fontWeight: 400
-        }}>
-          Join thousands of students already using NextWave to supercharge their academic journey.
-        </Typography>
-        <Button 
-          variant="contained" 
-          size="large"
-          sx={{
-            px: 6,
-            py: 2,
-            fontWeight: 700,
-            fontSize: '1.1rem'
-          }}
-        >
-          Get Started - It's Free
-        </Button>
+        {faqs.map((faq, idx) => (
+          <Accordion key={idx} sx={{ mb: 2 }}>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls={`panel${idx}-content`}
+              id={`panel${idx}-header`}
+            >
+              <Typography sx={{ fontWeight: 600 }}>{faq.question}</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography color="text.secondary">
+                {faq.answer}
+              </Typography>
+            </AccordionDetails>
+          </Accordion>
+        ))}
       </Container>
+
     </Box>
   );
 }
