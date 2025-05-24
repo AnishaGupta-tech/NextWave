@@ -137,7 +137,7 @@ const AttendanceTracker = () => {
       {/* Safe Percentage Input */}
       <Box sx={{ mb: 3, display: 'flex', alignItems: 'center', gap: 2 }}>
         <TextField
-          label="Safe Attendance %"
+          label="Safe Attend %"
           type="number"
           value={safePercentage}
           onChange={(e) => setSafePercentage(Number(e.target.value))}
