@@ -34,6 +34,12 @@ const Marketplace = () => {
     setImages((prev) => [...prev, ...imagePreviews]);
   };
 
+  const handleRemoveImage = (index) => {
+    const updatedImages = [...images];
+    updatedImages.splice(index, 1);
+    setImages(updatedImages);
+  };
+
   const handleSellSubmit = () => {
     if (!name || !description || !price || images.length === 0) {
       alert('All fields including images are required!');
@@ -147,14 +153,35 @@ const Marketplace = () => {
             />
           </Button>
 
+          {/* Preview Images with Remove Button */}
           <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 2 }}>
             {images.map((img, i) => (
-              <img
-                key={i}
-                src={img.preview}
-                alt={`Preview ${i + 1}`}
-                style={{ height: 60, borderRadius: 4 }}
-              />
+              <Box key={i} sx={{ position: 'relative', display: 'inline-block' }}>
+                <img
+                  src={img.preview}
+                  alt={`Preview ${i + 1}`}
+                  style={{ height: 60, borderRadius: 4 }}
+                />
+                <Button
+                  size="small"
+                  onClick={() => handleRemoveImage(i)}
+                  sx={{
+                    minWidth: 'unset',
+                    padding: '2px',
+                    position: 'absolute',
+                    top: -8,
+                    right: -8,
+                    backgroundColor: '#fff',
+                    color: 'red',
+                    borderRadius: '50%',
+                    fontSize: '12px',
+                    lineHeight: 1,
+                    zIndex: 1,
+                  }}
+                >
+                  ×
+                </Button>
+              </Box>
             ))}
           </Box>
 
