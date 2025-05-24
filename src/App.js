@@ -13,6 +13,7 @@ import EventsPage from './pages/EventsPage';
 import AttendanceTracker from './pages/AttendanceTracker';
 import Collab from './pages/Collab';
 import Marketplace from './pages/MarketPlace';
+import Notes from './pages/Notes';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -30,6 +31,7 @@ function App() {
               <Route path="/attendance-tracker" element={<AttendanceTracker />} />
               <Route path="/collab-zone" element={<Collab />} />
               <Route path="/marketplace" element={<Marketplace />} />
+              <Route path="/resources" element={<Notes />} />
               {/* You can add more routes like /resources later */}
             </Routes>
           </Box>
