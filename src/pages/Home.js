@@ -78,7 +78,7 @@ const founders = [
   },
   {
     name: 'Anisha Gupta',
-    role: 'Founder ',
+    role: 'Founder',
     bio: 'Expert in software development and AI solutions.',
     image: AnishaImage,
     linkedin: 'https://www.linkedin.com/in/anisha-gupta-33582b311/'
