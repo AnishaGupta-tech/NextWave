@@ -11,7 +11,10 @@ const Marketplace = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState('');
+  const [email, setEmail] = useState('');
   const [images, setImages] = useState([]);
+
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const savedProducts = JSON.parse(localStorage.getItem('marketplaceProducts')) || [];
@@ -19,6 +22,65 @@ const Marketplace = () => {
     setProducts(savedProducts);
     setApprovedProducts(approved);
   }, []);
+
+  const validateInputs = () => {
+    const newErrors = {};
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const alphaNumSpace = /^[a-zA-Z0-9\s]*$/;
+    const alphaNumPunctuation = /^[a-zA-Z0-9\s.,!?'"()\-]*$/;
+
+    if (!name.trim()) newErrors.name = 'Product name is required.';
+    else {
+      const nameWords = name.trim().split(/\s+/);
+      if (nameWords.length > 10) newErrors.name = 'Max 10 words allowed.';
+      else if (!alphaNumSpace.test(name)) newErrors.name = 'Only alphanumeric characters allowed.';
+    }
+
+    if (!description.trim()) newErrors.description = 'Description is required.';
+    else {
+      const descWords = description.trim().split(/\s+/);
+      if (descWords.length > 200) newErrors.description = 'Max 200 words allowed.';
+      else if (!alphaNumPunctuation.test(description)) newErrors.description = 'Only alphanumeric & basic punctuation allowed.';
+    }
+
+    if (!price.trim()) newErrors.price = 'Price is required.';
+    else if (!/^\d+$/.test(price) || parseInt(price, 10) <= 0) {
+      newErrors.price = 'Only positive whole numbers allowed.';
+    }
+
+    if (!email.trim()) newErrors.email = 'Email is required.';
+    else if (!emailRegex.test(email)) newErrors.email = 'Enter a valid email.';
+
+    if (images.length === 0) newErrors.images = 'At least 1 image is required.';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSellSubmit = () => {
+    if (!validateInputs()) return;
+
+    const newProduct = {
+      name,
+      description,
+      price,
+      email,
+      images,
+      approved: false,
+    };
+
+    const updatedProducts = [...products, newProduct];
+    setProducts(updatedProducts);
+    localStorage.setItem('marketplaceProducts', JSON.stringify(updatedProducts));
+
+    setName('');
+    setDescription('');
+    setPrice('');
+    setEmail('');
+    setImages([]);
+    setErrors({});
+    alert('Product submitted for approval!');
+  };
 
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
@@ -38,31 +100,6 @@ const Marketplace = () => {
     const updatedImages = [...images];
     updatedImages.splice(index, 1);
     setImages(updatedImages);
-  };
-
-  const handleSellSubmit = () => {
-    if (!name || !description || !price || images.length === 0) {
-      alert('All fields including images are required!');
-      return;
-    }
-
-    const newProduct = {
-      name,
-      description,
-      price,
-      images,
-      approved: false,
-    };
-
-    const updatedProducts = [...products, newProduct];
-    setProducts(updatedProducts);
-    localStorage.setItem('marketplaceProducts', JSON.stringify(updatedProducts));
-
-    setName('');
-    setDescription('');
-    setPrice('');
-    setImages([]);
-    alert('Product submitted for approval!');
   };
 
   const handleTabChange = (_, newValue) => {
@@ -124,6 +161,8 @@ const Marketplace = () => {
             label="Product Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            error={!!errors.name}
+            helperText={errors.name}
             sx={{ mb: 2 }}
           />
           <TextField
@@ -132,6 +171,8 @@ const Marketplace = () => {
             label="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
+            error={!!errors.description}
+            helperText={errors.description}
             sx={{ mb: 2 }}
           />
           <TextField
@@ -140,9 +181,21 @@ const Marketplace = () => {
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
+            error={!!errors.price}
+            helperText={errors.price}
             sx={{ mb: 2 }}
           />
-          <Button variant="contained" component="label" sx={{ mb: 2 }}>
+          <TextField
+            fullWidth
+            label="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            error={!!errors.email}
+            helperText={errors.email}
+            sx={{ mb: 2 }}
+          />
+          <Button variant="contained" component="label" sx={{ mb: 1 }}>
             Upload Images (max 3)
             <input
               type="file"
@@ -152,6 +205,7 @@ const Marketplace = () => {
               onChange={handleImageUpload}
             />
           </Button>
+          {errors.images && <Typography color="error" variant="body2">{errors.images}</Typography>}
 
           {/* Preview Images with Remove Button */}
           <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 2 }}>
