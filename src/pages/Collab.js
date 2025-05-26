@@ -1,167 +1,371 @@
 import React, { useState } from 'react';
+import {
+  Box, Typography, Grid, Card, CardContent, Avatar, Chip,
+  Button, Container, TextField, Tabs, Tab, Divider, Badge
+} from '@mui/material';
+import { 
+  GroupAdd, Code, EmojiEvents, Search, FilterList, 
+  Send, CheckCircle, Pending, Cancel
+} from '@mui/icons-material';
+import { styled } from '@mui/material/styles';
+
+const StatusChip = styled(Chip)(({ theme, status }) => ({
+  fontWeight: 600,
+  ...(status === 'open' && {
+    backgroundColor: theme.palette.success.light,
+    color: theme.palette.success.dark
+  }),
+  ...(status === 'pending' && {
+    backgroundColor: theme.palette.warning.light,
+    color: theme.palette.warning.dark
+  }),
+  ...(status === 'closed' && {
+    backgroundColor: theme.palette.error.light,
+    color: theme.palette.error.dark
+  })
+}));
+
+const SkillTag = styled(Chip)(({ theme }) => ({
+  marginRight: theme.spacing(1),
+  marginBottom: theme.spacing(1),
+  backgroundColor: theme.palette.primary.light,
+  color: theme.palette.primary.dark,
+  '&:hover': {
+    transform: 'scale(1.05)'
+  }
+}));
+
+const TeamCard = styled(Card)(({ theme }) => ({
+  transition: 'all 0.3s ease',
+  border: '2px solid transparent',
+  '&:hover': {
+    transform: 'translateY(-5px)',
+    boxShadow: theme.shadows[8],
+    borderColor: theme.palette.primary.main
+  }
+}));
 
 const Collab = () => {
-  const [users, setUsers] = useState([]);
-  const [formData, setFormData] = useState({
-    name: '',
-    skills: '',
-    lookingFor: '',
-    Hackathon: '',
-    Anycomments: '',
-  });
+  const [tabValue, setTabValue] = useState(0);
+  const [searchTerm, setSearchTerm] = useState('');
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const teams = [
+    {
+      id: 1,
+      name: 'Quantum Coders',
+      hackathon: 'Hack the Future 2023',
+      lookingFor: ['Frontend Dev', 'UI/UX Designer'],
+      skills: ['React', 'Node.js', 'Figma', 'Blockchain'],
+      members: [
+        { name: 'Aashi', role: 'Backend Dev', avatar: '/avatars/aashi.jpg' },
+        { name: 'Anisha', role: 'ML Engineer', avatar: '/avatars/anisha.jpg' }
+      ],
+      status: 'open',
+      description: 'Building a decentralized voting system using blockchain technology. Looking for passionate developers to join our team!'
+    },
+    {
+      id: 2,
+      name: 'AI Visionaries',
+      hackathon: 'AI Challenge 2023',
+      lookingFor: ['Data Scientist', 'Python Dev'],
+      skills: ['Python', 'TensorFlow', 'OpenCV', 'NLP'],
+      members: [
+        { name: 'Rahul', role: 'Team Lead', avatar: '/avatars/rahul.jpg' }
+      ],
+      status: 'open',
+      description: 'Creating computer vision solutions for social good. Need teammates with ML experience.'
+    },
+    {
+      id: 3,
+      name: 'Eco Innovators',
+      hackathon: 'Green Tech Hackathon',
+      lookingFor: ['Full Stack Dev', 'Hardware Engineer'],
+      skills: ['IoT', 'JavaScript', 'Arduino', 'Cloud'],
+      members: [
+        { name: 'Priya', role: 'Product Designer', avatar: '/avatars/priya.jpg' },
+        { name: 'Vikram', role: 'Backend Dev', avatar: '/avatars/vikram.jpg' }
+      ],
+      status: 'pending',
+      description: 'Developing smart recycling solutions. Join us to make an environmental impact!'
+    }
+  ];
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.name.trim() || !formData.skills.trim() || !formData.lookingFor.trim()) return;
-    const newUser = { ...formData, id: Date.now() };
-    setUsers([newUser, ...users]);
-    setFormData({ name: '', skills: '', lookingFor: '', Hackathon: '', Anycomments: '' });
+  const filteredTeams = teams
+    .filter(team =>
+      team.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      team.hackathon.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      team.skills.some(skill => skill.toLowerCase().includes(searchTerm.toLowerCase()))
+    )
+    .filter(team => tabValue === 0 || team.status === (tabValue === 1 ? 'open' : 'pending'));
+
+  const handleJoinRequest = (teamId) => {
+    // Handle join request logic
+    console.log(`Request to join team ${teamId}`);
   };
 
   return (
-    <div style={styles.app}>
-      <h1 style={styles.title}>🚀 Collab Zone</h1>
-      <form onSubmit={handleSubmit} style={styles.form}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Your Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          style={styles.input}
+    <Container maxWidth="xl" sx={{ py: 6 }}>
+      <Box sx={{ textAlign: 'center', mb: 6 }}>
+        <Chip 
+          icon={<GroupAdd />}
+          label="COLLAB ZONE"
+          sx={{
+            px: 3,
+            py: 1,
+            mb: 3,
+            fontWeight: 700,
+            fontSize: '1rem',
+            bgcolor: 'primary.main',
+            color: 'white'
+          }}
         />
-        <input
-          type="text"
-          name="skills"
-          placeholder="Your Skills"
-          value={formData.skills}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
-        <input
-          type="text"
-          name="lookingFor"
-          placeholder="Looking for (e.g., Frontend Dev)"
-          value={formData.lookingFor}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
-        <input
-          type="text"
-          name="Hackathon"
-          placeholder="Write the name of event you are looking for"
-          value={formData.lookingFor}
-          onChange={handleChange}
-          required
-          style={styles.input}
-        />
-        <input
-          type="text"
-          name="anycomments"
-          placeholder="Comments (optional)"
-          value={formData.lookingFor}
-          onChange={handleChange}
-          style={styles.input}
-        />
-        <button type="submit" style={styles.button}>Find Teammates</button>
-      </form>
+        <Typography variant="h3" sx={{ 
+          fontWeight: 800,
+          mb: 2,
+          background: 'linear-gradient(45deg, #7c4dff 30%, #00e5ff 90%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent'
+        }}>
+          Find Your Dream Hackathon Team
+        </Typography>
+        <Typography variant="h6" sx={{ 
+          maxWidth: 700,
+          mx: 'auto',
+          color: 'text.secondary'
+        }}>
+          Connect with talented students, form teams, and build amazing projects together!
+        </Typography>
+      </Box>
 
-      <div style={styles.userList}>
-        {users.length === 0 ? (
-          <p style={styles.noUsers}>No collaborators yet. Be the first!</p>
-        ) : (
-          users.map((user) => (
-            <div style={styles.userCard} key={user.id}>
-              <h3>👤 {user.name}</h3>
-              <p><strong>🛠 Skills:</strong> {user.skills}</p>
-              <p><strong>🤝 Looking For:</strong> {user.lookingFor}</p>
-            </div>
-          ))
-        )}
-      </div>
-    </div>
+      {/* Search and Filter Bar */}
+      <Box sx={{ 
+        display: 'flex', 
+        alignItems: 'center', 
+        mb: 4,
+        gap: 2,
+        flexWrap: 'wrap'
+      }}>
+        <TextField
+          fullWidth
+          variant="outlined"
+          placeholder="Search teams, hackathons or skills..."
+          InputProps={{
+            startAdornment: <Search sx={{ color: 'action.active', mr: 1 }} />
+          }}
+          sx={{
+            flexGrow: 1,
+            maxWidth: 600,
+            '& .MuiOutlinedInput-root': {
+              borderRadius: 50,
+              bgcolor: 'background.paper'
+            }
+          }}
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        
+        <Button 
+          variant="outlined" 
+          startIcon={<FilterList />}
+          sx={{
+            borderRadius: 50,
+            px: 3,
+            textTransform: 'none',
+            fontWeight: 600
+          }}
+        >
+          Filters
+        </Button>
+        
+        <Button 
+          variant="contained" 
+          startIcon={<Code />}
+          sx={{
+            borderRadius: 50,
+            px: 3,
+            textTransform: 'none',
+            fontWeight: 600
+          }}
+        >
+          Create Team
+        </Button>
+      </Box>
+
+      {/* Tabs */}
+      <Tabs 
+        value={tabValue} 
+        onChange={(e, newValue) => setTabValue(newValue)}
+        sx={{ 
+          mb: 4,
+          '& .MuiTabs-indicator': {
+            height: 4,
+            borderRadius: 2
+          }
+        }}
+      >
+        <Tab label="All Teams" icon={<GroupAdd />} iconPosition="start" />
+        <Tab label="Open" icon={<CheckCircle />} iconPosition="start" />
+        <Tab label="Pending" icon={<Pending />} iconPosition="start" />
+      </Tabs>
+
+      {/* Teams Grid */}
+      <Grid container spacing={4}>
+        {filteredTeams.map((team) => (
+          <Grid item xs={12} sm={6} md={4} key={team.id}>
+            <TeamCard>
+              <CardContent sx={{ p: 0 }}>
+                {/* Team Header */}
+                <Box sx={{ 
+                  p: 3,
+                  bgcolor: 'background.default',
+                  borderBottom: '1px solid',
+                  borderColor: 'divider'
+                }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 2 }}>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>
+                      {team.name}
+                    </Typography>
+                    <StatusChip 
+                      size="small"
+                      label={team.status.toUpperCase()}
+                      status={team.status}
+                    />
+                  </Box>
+                  <Typography variant="subtitle1" color="primary" sx={{ mb: 1 }}>
+                    {team.hackathon}
+                  </Typography>
+                  <Typography variant="body2" sx={{ mb: 2 }}>
+                    {team.description}
+                  </Typography>
+                </Box>
+
+                {/* Team Members */}
+                <Box sx={{ p: 3 }}>
+                  <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 2 }}>
+                    Team Members ({team.members.length}/4)
+                  </Typography>
+                  <Box sx={{ display: 'flex', mb: 3 }}>
+                    {team.members.map((member, index) => (
+                      <Avatar 
+                        key={index}
+                        src={member.avatar}
+                        alt={member.name}
+                        sx={{ 
+                          width: 40, 
+                          height: 40,
+                          mr: -1,
+                          border: '2px solid white',
+                          '&:hover': {
+                            transform: 'translateY(-5px)',
+                            zIndex: 1
+                          }
+                        }}
+                      />
+                    ))}
+                    {Array.from({ length: 4 - team.members.length }).map((_, index) => (
+                      <Avatar 
+                        key={`empty-${index}`}
+                        sx={{ 
+                          width: 40, 
+                          height: 40,
+                          mr: -1,
+                          bgcolor: 'action.hover',
+                          border: '2px solid white'
+                        }}
+                      >
+                        ?
+                      </Avatar>
+                    ))}
+                  </Box>
+
+                  {/* Looking For */}
+                  <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1 }}>
+                    Looking For:
+                  </Typography>
+                  <Box sx={{ mb: 3 }}>
+                    {team.lookingFor.map((role, index) => (
+                      <Chip
+                        key={index}
+                        label={role}
+                        size="small"
+                        sx={{
+                          mr: 1,
+                          mb: 1,
+                          bgcolor: 'secondary.light',
+                          color: 'secondary.dark'
+                        }}
+                      />
+                    ))}
+                  </Box>
+
+                  {/* Skills */}
+                  <Typography variant="subtitle2" sx={{ fontWeight: 600, mb: 1 }}>
+                    Skills Needed:
+                  </Typography>
+                  <Box sx={{ mb: 3 }}>
+                    {team.skills.map((skill, index) => (
+                      <SkillTag
+                        key={index}
+                        label={skill}
+                        size="small"
+                      />
+                    ))}
+                  </Box>
+
+                  {/* Action Button */}
+                  <Button
+                    fullWidth
+                    variant="contained"
+                    startIcon={<Send />}
+                    disabled={team.status !== 'open'}
+                    onClick={() => handleJoinRequest(team.id)}
+                    sx={{
+                      borderRadius: 2,
+                      py: 1.5,
+                      fontWeight: 600
+                    }}
+                  >
+                    {team.status === 'open' ? 'Request to Join' : 'Applications Closed'}
+                  </Button>
+                </Box>
+              </CardContent>
+            </TeamCard>
+          </Grid>
+        ))}
+      </Grid>
+
+      {/* Empty State */}
+      {filteredTeams.length === 0 && (
+        <Box sx={{ 
+          textAlign: 'center', 
+          p: 8,
+          bgcolor: 'background.paper',
+          borderRadius: 3
+        }}>
+          <EmojiEvents sx={{ fontSize: 60, color: 'text.disabled', mb: 2 }} />
+          <Typography variant="h5" sx={{ mb: 2 }}>
+            No teams found matching your search
+          </Typography>
+          <Typography variant="body1" color="text.secondary" sx={{ mb: 3 }}>
+            Try adjusting your filters or create your own team to get started!
+          </Typography>
+          <Button 
+            variant="contained" 
+            size="large"
+            startIcon={<Code />}
+            sx={{
+              px: 4,
+              py: 1.5,
+              borderRadius: 2,
+              fontWeight: 600
+            }}
+          >
+            Create New Team
+          </Button>
+        </Box>
+      )}
+    </Container>
   );
-};
-
-const styles = {
-  app: {
-    fontFamily: 'Segoe UI, sans-serif',
-    backgroundColor: '#000',
-    color: '#fff',
-    minHeight: '100vh',
-    padding: '40px 20px',
-    textAlign: 'center',
-  },
-  title: {
-    fontSize: '3rem',
-    marginBottom: '30px',
-    background: 'linear-gradient(90deg, #8e2de2, #4a00e0)',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-  },
-  form: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: '12px',
-    maxWidth: '400px',
-    margin: '0 auto 40px auto',
-    backgroundColor: '#1a1a1a',
-    padding: '25px',
-    borderRadius: '14px',
-    boxShadow: '0 0 15px rgba(138, 43, 226, 0.3)',
-  },
-  input: {
-    width: '100%',
-    padding: '12px',
-    borderRadius: '8px',
-    border: '1px solid #4a00e0',
-    backgroundColor: '#000',
-    color: '#fff',
-    fontSize: '1rem',
-    transition: 'border-color 0.3s ease',
-  },
-  button: {
-    padding: '12px 25px',
-    borderRadius: '8px',
-    border: 'none',
-    background: 'linear-gradient(90deg, #8e2de2, #4a00e0)',
-    color: '#fff',
-    fontSize: '1rem',
-    fontWeight: 'bold',
-    cursor: 'pointer',
-    marginTop: '10px',
-    transition: 'transform 0.2s ease',
-  },
-  userList: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-    gap: '20px',
-    padding: '0 20px',
-  },
-  userCard: {
-    backgroundColor: '#1e1e1e',
-    padding: '20px',
-    borderRadius: '12px',
-    borderLeft: '5px solid #4a00e0',
-    boxShadow: '0 0 10px rgba(72, 61, 139, 0.4)',
-    textAlign: 'left',
-    color: '#fff',
-  },
-  noUsers: {
-    fontStyle: 'italic',
-    opacity: 0.7,
-  },
 };
 
 export default Collab;
