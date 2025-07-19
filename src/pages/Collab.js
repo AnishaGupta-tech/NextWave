@@ -29,7 +29,7 @@ import {
   Code as CodingIcon
 } from '@mui/icons-material';
 
-const CareerCorner = () => {
+const Collab = () => {
   const [tabValue, setTabValue] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -410,4 +410,4 @@ const CareerCorner = () => {
   );
 };
 
-export default CareerCorner;
+export default Collab;

@@ -29,7 +29,8 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/events" element={<EventsPage />} />
               <Route path="/attendance-tracker" element={<AttendanceTracker />} />
-              <Route path="/collab-zone" element={<Collab />} />
+              <Route path="/career-corner" element={<Collab />} />
+
               <Route path="/marketplace" element={<Marketplace />} />
               <Route path="/resources" element={<Notes />} />
               {/* You can add more routes like /resources later */}
