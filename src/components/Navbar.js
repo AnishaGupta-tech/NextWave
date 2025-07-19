@@ -36,9 +36,9 @@ const Navbar = ({ darkMode, setDarkMode }) => {
           })}
         </Box>
 
-        <IconButton onClick={() => setDarkMode(!darkMode)} color="inherit" sx={{ ml: 2 }}>
+        {/* <IconButton onClick={() => setDarkMode(!darkMode)} color="inherit" sx={{ ml: 2 }}>
           {darkMode ? <Brightness7 /> : <Brightness4 />}
-        </IconButton>
+        </IconButton> */}
       </Toolbar>
     </AppBar>
   );
