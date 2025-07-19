@@ -4,7 +4,7 @@ import { Brightness4, Brightness7 } from '@mui/icons-material';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = ({ darkMode, setDarkMode }) => {
-  const tabs = ['Home', 'Events', 'Attendance Tracker', 'Collab Zone', 'Resources', 'Marketplace'];
+  const tabs = ['Home', 'Events', 'Attendance Tracker', 'Career Corner', 'Resources', 'Marketplace'];
 
   return (
     <AppBar position="static" elevation={0} sx={{ bgcolor: 'background.paper' }}>
