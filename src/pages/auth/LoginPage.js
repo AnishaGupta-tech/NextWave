@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useAuth } from './AuthContext';
+import { useAuth } from '../../components/context/AuthContext';
+
 import { useNavigate, Link } from 'react-router-dom';
 import { 
   Box, 
