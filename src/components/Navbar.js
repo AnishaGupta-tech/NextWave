@@ -34,8 +34,31 @@ const Navbar = ({ darkMode, setDarkMode }) => {
               </Button>
             );
           })}
+
+          {/* Register Button */}
+          <Button
+            component={NavLink}
+            to="/register"
+            variant="contained"
+            color="secondary"
+            sx={{
+              ml: 2,
+              fontWeight: 700,
+              textTransform: 'none',
+              borderRadius: '20px',
+              boxShadow: 2,
+              bgcolor: '#7c4dff',
+              color: '#fff',
+              '&:hover': {
+                bgcolor: '#651fff',
+              },
+            }}
+          >
+            Register
+          </Button>
         </Box>
 
+        {/* Uncomment if you want darkmode toggle */}
         {/* <IconButton onClick={() => setDarkMode(!darkMode)} color="inherit" sx={{ ml: 2 }}>
           {darkMode ? <Brightness7 /> : <Brightness4 />}
         </IconButton> */}
