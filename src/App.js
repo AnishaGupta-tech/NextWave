@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import { Box } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom'; // ✅ Only Routes & Route here
 
 import { darkTheme } from './styles/themes/darkTheme';
 import { lightTheme } from './styles/themes/lightTheme';
@@ -27,43 +27,31 @@ function App() {
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <CssBaseline />
       <AuthProvider>
-        <Router>
-          <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-            <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/events" element={<EventsPage />} />
-                <Route path="/attendance-tracker" element={<AttendanceTracker />} />
-                <Route path="/career-corner" element={<Collab />} />
-                <Route path="/marketplace" element={<Marketplace />} />
-                <Route path="/resources" element={<Notes />} />
-                
-                {/* Auth Routes */}
-                <Route path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
-                <Route 
-                  path="/profile" 
-                  element={
-                    <ProtectedRoute>
-                      <ProfilePage />
-                    </ProtectedRoute>
-                  } 
-                />
-
-                {/* Protected Example (if you want to protect existing routes) */}
-                {/* <Route 
-                  path="/notes" 
-                  element={
-                    <ProtectedRoute>
-                      <Notes />
-                    </ProtectedRoute>
-                  } 
-                /> */}
-              </Routes>
-            </Box>
+        <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+          <Navbar darkMode={darkMode} setDarkMode={setDarkMode} />
+          <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/events" element={<EventsPage />} />
+              <Route path="/attendance-tracker" element={<AttendanceTracker />} />
+              <Route path="/career-corner" element={<Collab />} />
+              <Route path="/marketplace" element={<Marketplace />} />
+              <Route path="/resources" element={<Notes />} />
+              
+              {/* Auth Routes */}
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
+              <Route 
+                path="/profile" 
+                element={
+                  <ProtectedRoute>
+                    <ProfilePage />
+                  </ProtectedRoute>
+                } 
+              />
+            </Routes>
           </Box>
-        </Router>
+        </Box>
       </AuthProvider>
     </ThemeProvider>
   );
